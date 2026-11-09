@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Galeria instalacion de puertas - carpinteria MODERNA GIRARDOT</title>
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    <body style="background-color: #fcf8f2; margin: 0 ; padding: 0";>
+    <nav class="navbar-galeria" style="background-color: #1a1a24; padding: 20px; text-align: center; display:flex; justify-content: space-between; align-items: center;">
+    <h2 style="color: #ffffff; margin: 0; font-family: sans-serif;font-size: 1.5rem;">Galeria de instalacion de puertas</h2>
+    <a href="javascript:window.close();"style="color: #ffa500; text-decoration: none; font-weight: bold; font-family: sans-serif;">Volver al inicio</a>
+    </nav>
+    <div style="max-width: 1200px;margin: 40px auto;padding: 0 20px; text-align: center;">
+        <h1 style="color: #8b4513; font-family: sans-serif; margin-bottom: 10px;">Nuestros trabajos de instalacion de puertas </h1>
+        <p style="color: #3d3d3d; font-family: sans-serif; margin-bottom: 40px;">Proyectos fabricados e instalados con acabados de alta gama.</p>
+       
+        <div class="grid-galeria" id="galeria-automatica"></div>
+        <div id="miModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8);justify-content: center; align-items: center;">
+            <span class="cerrar-modal" style="position: absolute; top: 20px; right: 30px; color: whife; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
+            <img class="contenido-modal" id="imagenModal" src="" alt="vista ampliada" style="max-width: 80%; max-height: 80%">
+        </div>
+        <script> 
+            const contenedor=document.getElementById('galeria-automatica');
+            const totalimagenes = 24;
+             
+            for(let i = 1; i<= totalimagenes; i++){
+                const item = document.createElement('div');
+                item.className='item-galeria';
+                const img = document.createElement('img');
+                img.src=`imagenes/puertas/PUERTA (${i}).jpg`;
+                img.alt= `puerta numero ${i}`;
+                img.loading= "lazy";
+                item.appendChild(img);
+                contenedor.appendChild(item);
+             }
+             const modal = document.getElementById('miModal');
+             const imagenModal = document.getElementById('imagenModal');
+             const botonCerrar = document.querySelector('.cerrar-modal');
+             
+             document.addEventListener('click', function(e){
+                if (e.target && e.target.tagName === 'IMG' && e.target.closest('.item-galeria')){
+                    if (modal && imagenModal){
+                    modal.style.display = "flex";
+                    imagenModal.src = e.target.src;
+                    imagenModal.alt = e.target.alt;
+                    }
+                }
+             });
+             if (botonCerrar){
+                botonCerrar.addEventListener('click', () => {
+                    modal.style.display = "none";
+                });
+             }
+             if(modal){
+                modal.addEventListener('click', (e) =>{
+                    if (e.target === modal){
+                        modal.style.display = "none";
+                    }
+                });
+             }
+        </script>
+       </div>
+     </body>
+</html>
